@@ -19,3 +19,6 @@ Route::controller('user','UserController');
 
 
 Route::controller('index','IndexController');
+
+
+Route::controller('indexs','IndexsController');
