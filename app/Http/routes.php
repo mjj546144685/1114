@@ -12,7 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('/admin/user/index');
 });
 
+
+
+
+//后台首页
+Route::get('/admin','Admin\IndexController@index');
+//创建后台的用户路由
+Route::controller('/admin/user','Admin\IndexController');
 
