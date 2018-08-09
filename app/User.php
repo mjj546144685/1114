@@ -9,6 +9,8 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -21,8 +23,8 @@ class User extends Model implements AuthenticatableContract,
      *
      * @var string
      */
-    protected $table = 'users';
-
+    public $table = 'users';
+     public $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
      *
@@ -36,9 +38,8 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-}
-//配置一对一 关联用户详情
-public function userdetail()
-{
-    return $this->hasOne('App\Models\Userdetail','uid');
+
+    
+
+    
 }

@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use DB;
+use App\admin\Models\Usersdetail;
+use App\User;
+
 
 class IndexController extends Controller
 {
@@ -17,8 +20,10 @@ class IndexController extends Controller
      */
     public function getIndex()
     {
+        $data = User::get();
+        // dump($users);
         //加载模板
-        return view('admin.user.index');
+        return view('admin.user.list',['data'=>$data]);
     }
 
     /**
@@ -28,14 +33,7 @@ class IndexController extends Controller
      */
     public function getList()
     {
-        // echo '111';
-        $data = DB::table('users')
-                ->join('users_detail','users.id','=','users_detail.uid')
-                ->select('users.*','users_detail.phone','users_detail.email')
-                ->get();
-                
-        // dump($data);
-        return view('admin.user.list',['data'=>$data]);
+        
     }
 
     /**
@@ -67,9 +65,9 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function getEdit($id)
+    {   
+        
     }
 
     /**
@@ -90,8 +88,16 @@ class IndexController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function getDestroy($id)
     {
-        //
+        //删除
+       $res = User::destroy($id);
+        //返回模版
+       return back();
     }
+
+
+
+    
+
 }

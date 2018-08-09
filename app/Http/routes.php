@@ -21,5 +21,6 @@ Route::get('/', function () {
 //后台首页
 Route::get('/admin','Admin\IndexController@index');
 //创建后台的用户路由
-Route::controller('/admin/user','Admin\IndexController');
+Route::controller('/admin/index','Admin\IndexController');
+// Route::controller('/admin/user','Admin\IndexController');
 

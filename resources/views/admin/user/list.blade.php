@@ -35,9 +35,8 @@
                 <li>
                     <a href="#"><i class="icon-font">&#xe003;</i>用户管理</a>
                     <ul class="sub-menu">
-                        <li><a href="/admin/user/list"><i class="icon-font">&#xe008;</i>用户列表</a></li>
-                        <li><a href="/admin/user/create"><i class="icon-font">&#xe005;</i>用户添加</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe033;</i>回收站</a></li>
+                        <li><a href="/admin/index/index"><i class="icon-font">&#xe008;</i>用户列表</a></li>
+                        <li><a href="/admin/index/create"><i class="icon-font">&#xe005;</i>用户添加</a></li>
                     </ul>
                 </li>
                 <li>
@@ -45,7 +44,6 @@
                     <ul class="sub-menu">
                         <li><a href="design.html"><i class="icon-font">&#xe008;</i>用户列表</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe005;</i>用户添加</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe033;</i>回收站</a></li>
                     </ul>
                 </li>
                 <li>
@@ -82,8 +80,8 @@
                             </td>
                             <td>页</td>
                             <th width="70">关键字:</th>
-                            <td><input class="common-text" placeholder="关键字" name="keywords" value="" id="" type="text"></td>
-                            <td><input class="btn btn-primary btn2" name="sub" value="查询" type="submit"></td>
+                            <td><input class="common-text" placeholder="关键字" name="guanjianzi" value="" id="" type="text"></td>
+                            <td><input class="btn btn-primary btn2" name="username" value="查询" type="submit"></td>
                         </tr>
                     </table>
                 </form>
@@ -115,7 +113,7 @@
                            <td></td>
                             <td>
                                 <a class="" href="#">修改</a>
-                                <a class="" href="#">删除</a>
+                                <a class="" href="/admin/index/destroy/{{ $v->id }}">删除</a>
                             </td>
                         </tr>
                        @endforeach 
