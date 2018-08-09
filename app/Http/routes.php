@@ -15,10 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::controller('user','UserController');
 
-
-Route::controller('index','IndexController');
-
-
-Route::controller('indexs','IndexsController');
