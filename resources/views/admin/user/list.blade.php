@@ -1,131 +1,70 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>1114</title>
-    <link rel="stylesheet" type="text/css" href="/a/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/a/css/main.css"/>
-</head>
-<body>
-<div class="topbar-wrap white">
-    <div class="topbar-inner clearfix">
-        <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
-            <ul class="navbar-list clearfix">
-                <li><a class="on" href="index.html">首页</a></li>
-                <li><a href="http://www.17sucai.com/" target="_blank">网站首页</a></li>
-            </ul>
-        </div>
-        <div class="top-info-wrap">
-            <ul class="top-info-list clearfix">
-                <li><a href="#">管理员</a></li>
-                <li><a href="#">修改密码</a></li>
-                <li><a href="#">退出</a></li>
-            </ul>
+@extends('admin.layout.index')
+
+<!--在占位符中填充内容 -->
+@section('container')
+
+<!-- 在这儿输入内容 -->
+<!-- 在这儿输入内容 -->
+<!-- 在这儿输入内容 -->
+	
+
+
+<div class="mws-panel grid_8">
+	<div class="mws-panel-header">
+    	<span><i class="icon-table"></i>用户列表页</span>
+    </div>
+    <div class="mws-panel-body no-padding">
+        <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper" role="grid">
+        	<form action="/admin/user/list" method="get">
+            	<div id="DataTables_Table_0_length" class="dataTables_length">
+            		<label>第<select size="1" name="count" aria-controls="DataTables_Table_0">
+            			<option value="2" @if(!empty($request['count']) && isset($request['count']) ==2) selected @endif>2</option>
+            			<option value="5" @if(!empty($request['count']) && isset($request['count']) ==5) selected @endif>5</option>
+            			<option value="10" @if(!empty($request['count']) && isset($request['count']) ==10) selected @endif>10</option>
+            		</select>条</label>
+            	</div>
+            	<div class="dataTables_filter" id="DataTables_Table_0_filter">
+            		<th width="70">关键字:</th>
+                	<td><input class="common-text" name="search" placeholder="关键字" name="guanjianzi" value="" id="" type="text"></td>
+                	<td><input class="btn btn-primary btn2" name="username" value="查询" type="submit"></td>
+            	</div>
+        	</form>
+        	<table class="mws-datatable mws-table dataTable" id="DataTables_Table_0" aria-describedby="DataTables_Table_0_info">
+            <thead>
+                <tr role="row"><th class="sorting_asc" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 130px;">ID</th>
+                    <th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 260px;">头像</th>
+                	<th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 200px;">用户名</th>
+                	<th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 238px;">手机号</th>
+                	<th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 173px;">邮箱</th>
+                	<th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 130px;">审核状态</th>
+                	<th class="sorting" role="columnheader" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 130px;">操作</th>
+                </tr>
+            </thead>
+            
+        	<tbody role="alert" aria-live="polite" aria-relevant="all">
+        		@foreach ($data as $k=>$v)
+            		<tr class="odd">
+                        <td class=" ">{{ $v->id }}</td>
+                        <td><img src="{{ $v['imgpath'] }}"  width="100px" alt=""></td>
+                        <td class=" ">{{ $v->username }}</td>
+                        <td class=" ">{{ $v->phone }}</td>
+                        <td class=" ">{{ $v->email }}</td>
+                        <td class=" ">{{ $v->status == 1 ? '激活' : '未激活'  }}</td>
+                        <td class=" ">
+                        	<a class="btn btn-warning btn-small" href="/admin/user/edit/{{ $v->id }}">修改</a>
+                        	<a class="btn btn-danger btn-small" href="/admin/user/destroy/{{ $v->id }}">删除</a>
+                        </td>
+                    </tr>
+				@endforeach 
+            </tbody>
+        </table>
+        
+        <div class="page_page">
+                 {!! $data->appends($page)->render() !!}
         </div>
     </div>
+   </div>
 </div>
-<div class="container clearfix">
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <h1>菜单</h1>
-        </div>
-        <div class="sidebar-content">
-            <ul class="sidebar-list">
-                <li>
-                    <a href="#"><i class="icon-font">&#xe003;</i>用户管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="/admin/index/index"><i class="icon-font">&#xe008;</i>用户列表</a></li>
-                        <li><a href="/admin/index/create"><i class="icon-font">&#xe005;</i>用户添加</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-font">&#xe003;</i>管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="design.html"><i class="icon-font">&#xe008;</i>用户列表</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe005;</i>用户添加</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="system.html"><i class="icon-font">&#xe017;</i>系统设置</a></li>
-                        <li><a href="system.html"><i class="icon-font">&#xe037;</i>清理缓存</a></li>
-                        <li><a href="system.html"><i class="icon-font">&#xe046;</i>数据备份</a></li>
-                        <li><a href="system.html"><i class="icon-font">&#xe045;</i>数据还原</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--/sidebar-->
-    <div class="main-wrap">
+				
 
-        <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="index.html">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name">作品管理</span></div>
-        </div>
-        <div class="search-wrap">
-            <div class="search-content">
-                <form action="#" method="post">
-                    <table class="search-tab">
-                        <tr>
-                            <th width="120">选择:</th>
-                            <td>
-                                <select name="search-sort" id="">
-                                    <option value="">全部</option>
-                                    <option value="19">3</option>
-                                    <option value="20">5</option>
-                                    <option value="20">10</option>
-                                </select>
-                            </td>
-                            <td>页</td>
-                            <th width="70">关键字:</th>
-                            <td><input class="common-text" placeholder="关键字" name="guanjianzi" value="" id="" type="text"></td>
-                            <td><input class="btn btn-primary btn2" name="username" value="查询" type="submit"></td>
-                        </tr>
-                    </table>
-                </form>
-            </div>
-        </div>
-        <div class="result-wrap">
-            <form name="myform" id="myform" method="post">
-               
-                <div class="result-content">
-                    <table class="result-tab" width="100%">
-                        <tr>
-                            <th class="tc" width="5%"><input class="allChoose" name="" type="checkbox"></th>
-                            <th>ID</th>
-                            <th>用户名</th>
-                            <th>密码</th>
-                            <th>手机号</th>
-                            <th>邮箱</th>
-                            <th>审核状态</th>
-                            <th>操作</th>
-                        </tr>
-                        @foreach ($data as $k=>$v)
-                        <tr>
-                            <td class="tc"><input name="id[]" value="58" type="checkbox"></td>
-                           <td>{{ $v->id }}</td>
-                           <td>{{ $v->username }}</td>
-                           <td>{{ $v->password }}</td>
-                           <td>{{ $v->phone }}</td>
-                           <td>{{ $v->email }}</td>
-                           <td></td>
-                            <td>
-                                <a class="" href="#">修改</a>
-                                <a class="" href="/admin/index/destroy/{{ $v->id }}">删除</a>
-                            </td>
-                        </tr>
-                       @endforeach 
-                    </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--/main-->
-</div>
-</body>
-</html>
-
-
+@endsection

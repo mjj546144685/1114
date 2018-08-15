@@ -10,17 +10,91 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
-Route::get('/', function () {
-    return view('/admin/user/index');
+//后台首页
+Route::get('/admin', function () {
+    return view('admin/index/index');
 });
 
 
 
 
-//后台首页
-Route::get('/admin','Admin\IndexController@index');
-//创建后台的用户路由
-Route::controller('/admin/index','Admin\IndexController');
-// Route::controller('/admin/user','Admin\IndexController');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//后台友情链接
+Route::controller('/admin/youqing','Admin\YouqingController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//创建后台的用户路由
+Route::controller('/admin/user','Admin\UserController');
+//后台轮播图
+Route::controller('/admin/lbt','Admin\LbtController');
+//后台敏感词
+Route::controller('/admin/mgc','Admin\MgcController');
